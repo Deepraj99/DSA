@@ -1,0 +1,42 @@
+Pointers is a adress variable that is use for storing adress of data not data itself, normal variables are data variables but pointer is a adress variable.
+pointers are useful for - 
+accesing heep, resorses and passing parameters.
+
+#include<bits/stdc++.h> or #include<malloc>  //C++
+#include<stdlib.h> //C
+int main()
+{
+   int *P;   //address variable or pointer   , int a; is a data variable
+ 
+   p = (int *)malloc(5*sizeof(int)); // for C , it uses for alloting memory in heep
+                                     // (int *) if for you are going to stroe int data and 5*sizeof(int) for 5 int values.
+
+   p = new int[5];  // in C++ instead of malloc
+}
+
+
+Pointers is a adress variable that is use for storing adress of data not data itself, normal variables are data variables but pointer is a adress variable.
+pointers are useful for - 
+accesing heep, resorses and passing parameters.
+
+#include<bits/stdc++.h> or #include<malloc>  //C++
+#include<stdlib.h> //C
+int main()
+{
+   int *P;   //address variable or pointer   , int a; is a data variable
+ 
+   p = (int *)malloc(5*sizeof(int)); // for C , it uses for alloting memory in heep
+                                     // (int *) if for you are going to stroe int data and 5*sizeof(int) for 5 int values.
+
+   p = new int[5];  // in C++ instead of malloc
+}
+
+Reference - usefull for parameters passing--
+int main()
+{
+   int a = 10;
+   int &r = a;    //now variable a has a another name r also, here a=10 & r=10
+   cout<<a; //10  //adress of both a and r are same..
+   r++;
+   cout<<a; //11;
+   cout<<r; //11;

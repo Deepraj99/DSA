@@ -1,0 +1,133 @@
+https://www.codechef.com/viewsolution/34819759
+
+/*⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡖⠁⠀⠀⠀⠀⠀⠀⠈⢲⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣼⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣧⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣸⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⡇⠀⢀⣀⣤⣤⣤⣤⣀⡀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣔⢿⡿⠟⠛⠛⠻⢿⡿⣢⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣀⣤⣶⣾⣿⣿⣿⣷⣤⣀⡀⢀⣀⣤⣾⣿⣿⣿⣷⣶⣤⡀⠀⠀⠀⠀
+⠀⠀⢠⣾⣿⡿⠿⠿⠿⣿⣿⣿⣿⡿⠏⠻⢿⣿⣿⣿⣿⠿⠿⠿⢿⣿⣷⡀⠀⠀
+⠀⢠⡿⠋⠁⠀⠀⢸⣿⡇⠉⠻⣿⠇⠀⠀⠸⣿⡿⠋⢰⣿⡇⠀⠀⠈⠙⢿⡄⠀
+⠀⡿⠁⠀⠀⠀⠀⠘⣿⣷⡀⠀⠰⣿⣶⣶⣿⡎⠀⢀⣾⣿⠇⠀⠀⠀⠀⠈⢿⠀
+⠀⡇⠀⠀⠀⠀⠀⠀⠹⣿⣷⣄⠀⣿⣿⣿⣿⠀⣠⣾⣿⠏⠀⠀⠀⠀⠀⠀⢸⠀
+⠀⠁⠀⠀⠀⠀⠀⠀⠀⠈⠻⢿⢇⣿⣿⣿⣿⡸⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠈⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠐⢤⣀⣀⢀⣀⣠⣴⣿⣿⠿⠋⠙⠿⣿⣿⣦⣄⣀⠀⠀⣀⡠⠂⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⠉⠛⠛⠛⠛⠉⠀⠀⠀⠀⠀⠈⠉⠛⠛⠛⠛⠋⠁⠀⠀⠀⠀⠀
+*/
+
+#include<bits/stdc++.h>
+#include<math.h>
+#define IOS             ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define Chrono          std::chrono::time_point<std::chrono::system_clock> start, end; start = std::chrono::system_clock::now();
+#define time            end = std::chrono::system_clock::now();std::chrono::duration<double> elapsed_seconds = end - start;std::time_t end_time = std::chrono::system_clock::to_time_t(end);cerr << "\nfinished computation at " << std::ctime(&end_time)<< "elapsed time: " << elapsed_seconds.count() << "s\n";
+#define int             long long
+#define test            int t; cin>>t; while(t--)
+#define ll              unsigned long long int
+#define pb              push_back
+#define input(a)        int n; cin>>n; int a[n]; for(int i=0; i<n; i++) {cin>>a[i];}
+#define f(n)            for(int i=0; i<n; i++)
+#define OK              if(ok){cout<<"YES"<<endl;} else{cout<<"NO"<<endl;}
+#define Ok              if(ok){cout<<"Yes"<<endl;} else{cout<<"No"<<endl;}
+#define mod             1000000007
+//#define endl "\n"
+using namespace std;
+//-----------------------------------------------------------------------------
+
+// to check prime number
+bool isPrime(int n)  //IN  O(sqrt(n))
+{
+    if(n<=1) return false;
+    for(int i=2;i*i<=n;i++)
+        if(n%i==0)
+            return false;
+
+    return true;
+}
+
+// to get divisors of a number. Recall - it's not i sorted order
+// vector<int> v = divisors(n); function call
+vector<int> divisors(int n){    //IN  O(sqrt(n))
+
+    vector<int> v;
+    for(int i=1;i*i<=n;i++)
+    {
+        if(n%i==0)
+        {
+            v.pb(i);
+            if((n/i)!=i)
+            v.pb(n/i);
+        }
+    }
+    return v;
+}
+
+// to find power using mod
+int power(int a, int n, int m)  // using Binary Exponential in TC O(logn)
+{
+    int res=1;
+    while(n)
+    {
+        if(n%2)
+        res=(res*a)%m ,n--;
+        else
+        a=(a*a)%m ,n/=2;
+    }
+    return res;
+}
+
+// ternary search to find x in sorted array arr
+int ts(int arr[],int l,int r,int x)
+{
+
+    while(l<=r)
+    {
+        int mid1= l+(r-l)/3;
+        int mid2= r -(r-l)/3;
+        if(arr[mid1]==x || arr[mid2]==x)
+            return 1;
+        if(x<arr[mid1])
+            r=mid1-1;
+        else if(x>arr[mid2])
+            l=mid2+1;
+        else
+        {
+            l=mid1+1;
+            r=mid2-1;
+        }
+    }
+    return 0;
+}
+
+// to find frequencies of a substring in a string or to find all positions of all substrings
+// vector<int> v = count_freq(s1 ,s2); function calling
+// position storing is 0 based indexing add 1 if required 1 based indexing.
+//This code is used to count the frequency of particular substring in a given string using the found function
+vector<int> count_freq(string &str ,string &substr)
+{
+	vector<int>pos;
+	size_t found = str.find(substr,0);
+	while(found!=string::npos)
+	{
+		pos.pb(found);    
+		found=str.find(substr,found+1); 
+    }
+    return pos;
+}
+
+//************************************************************************************************
+
+int32_t main()
+{
+    IOS
+    test
+    {
+        
+    }
+    return 0;
+}
+
+
+
+

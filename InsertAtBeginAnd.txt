@@ -1,0 +1,87 @@
+#include<bits/stdc++.h>
+#include<conio.h>
+using namespace std;
+
+
+struct node
+{
+    int info;
+    struct node *next;
+}*start=NULL;
+
+
+void create()
+{
+    char ch;
+    do
+    {
+        struct node *ptr;
+        struct node *temp;
+        ptr = (struct node *)malloc(sizeof(struct node));
+        cout<<"\n"<<"Enter value : ";
+        cin>>ptr->info;
+        ptr->next = NULL;
+        if(start==NULL)
+      {
+        start = ptr;
+        temp = ptr;
+      }
+       else
+      {
+        temp->next = ptr;
+        temp = ptr;
+      }
+      cout<<"Press a to exit and q to continue : ";
+      ch = getch();
+    }
+    while(ch!='a');
+}
+
+
+void insert_at_begin()
+{
+    struct node *ptr;
+    ptr = (struct node *)malloc(sizeof(struct node));
+    cout<<endl<<"Enter the value that you want to insert at the first : ";
+    cin>>ptr->info;
+    if(start!=NULL)
+    {
+        ptr->next = start;
+        start = ptr;
+    }
+}
+
+
+void insert_at_end()
+{
+    struct node *ptr, *p;
+    ptr = (struct node *)malloc(sizeof(struct node));
+    cout<<"Enter the value that you want to insert at the end : ";
+    cin>>ptr->info;
+    ptr->next = NULL;
+    p = start;
+    while(p->next != NULL)
+    {
+        p = p->next;
+    }
+    p->next = ptr;
+}
+
+
+void disp()
+{
+    struct node *ptr;
+    ptr = start;
+    while(ptr != NULL)
+    {
+        cout<<" "<<ptr->info<<" ";
+        ptr = ptr->next;
+    }
+}
+int main()
+{
+    create();
+    insert_at_begin();
+    insert_at_end();
+    disp();
+}

@@ -1,0 +1,124 @@
+Set :
+
+(i) Stores the values in sorted order.
+(ii) Stores only unique values.
+(iii) Elements can only be inserted or deleted but cannot be modified.
+(iv) We can erase more than 1 element by giving start iterator and end iterator position.
+(v) Traversal using iterators.
+(vi) Sets are implemented as Binary Search Tree.
+
+Multiset :
+(i) Stores elements in sorted order.
+(ii) It allows storage of multiple elements.
+(iii) We can erase more than 1 element by giving start iterator and end iterator.
+Note:- All other properties similar to set.
+
+Unordered set :
+perfect ex-
+https://www.geeksforgeeks.org/find-total-number-of-distinct-years-from-a-string/
+(i) Elements can be stored in any order. ( no sorted order )
+(ii) Stores only unique values.
+(iii) Hash-table used to store elements.
+(iv) We can erase only the element for which iterator position is given.
+Note:- All other properties similar to set.
+
+Unordered Multiset :
+(i) Elements can be stored in any order.
+(ii) Duplicate elements can be stored.
+(iii) Hash-table used to store elements.
+(iv) We can erase only the element for which iterator position is given.
+Note:- All other properties similar to set.
+
+
+## memset
+void* memset( void* str, int ch, size_t n);
+Parameters
+str[] : Pointer to the object to copy the character.
+ch : The character to copy.
+n : Number of bytes to copy.
+Return value :
+The memset() function returns str, the pointer to the destination string.
+
+#include <cstring> 
+#include <iostream> 
+  
+using namespace std; 
+  
+int main() 
+{ 
+    char str[] = "geeksforgeeks"; 
+    memset(str, 't', sizeof(str)); 
+    cout << str; 
+    return 0; 
+} 
+Output:
+
+tttttttttttttt
+
+#include <bits/stdc++.h> 
+using namespace std; 
+   
+int main() 
+{ 
+    int a[5]; 
+   
+    // all elements of A are zero 
+    memset(a, 0, sizeof(a)); 
+    for (int i = 0; i < 5; i++) 
+        cout << a[i] << " "; 
+    cout << endl; 
+   
+    // all elements of A are -1 
+    memset(a, -1, sizeof(a)); 
+    for (int i = 0; i < 5; i++) 
+        cout << a[i] << " "; 
+    cout << endl; 
+   
+    // Would not work 
+    memset(a, 5, sizeof(a)); // WRONG 
+    for (int i = 0; i < 5; i++) 
+        cout << a[i] << " "; 
+} 
+Output:
+
+0 0 0 0 0 
+-1 -1 -1 -1 -1 
+84215045 84215045 84215045 84215045 84215045
+
+set<int> s;
+s.insert(s);
+or
+set<int> s(a, a+5);
+
+s.count(n);
+it cheaks whether value n is in the list or not and returns 1 or 0, since set has only unique elements.
+
+https://www.geeksforgeeks.org/remove-duplicaterepeated-words-string/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void removeDuplicate(string s)
+{
+    unordered_set<string> str;
+    stringstream ss(s);
+    string word;
+    while(ss >> word)
+    {
+        if(str.find(word) == str.end())
+        {
+            cout<<word<<" ";
+            str.insert(word);
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    string s;
+    getline(cin, s);
+    removeDuplicate(s);
+    return 0;
+}

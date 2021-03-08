@@ -1,0 +1,25 @@
+#include<iostreme>
+using namespace std;
+
+struct student
+{
+   char name[10];
+   int roll;
+   int class;
+};                        //memory = 10+4+4 = 18bytes;
+
+int main()
+{ 
+    struct student S;
+    cout<<S.name<<S.class<<S.roll;
+}
+// using while loop and getc() function, can store several stdunts data
+
+
+// structure using array
+
+int main()
+{ 
+    struct student S[50];           //memory = 50*18 byte
+    cout<<S[0].name<<S[24].class<<S[49].roll; 
+}

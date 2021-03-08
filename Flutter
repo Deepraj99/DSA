@@ -1,0 +1,4 @@
+to remove banner
+
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,

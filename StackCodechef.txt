@@ -1,0 +1,153 @@
+input - <<>>>>
+output - 4
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string ch;
+        cin>>ch;
+        int n = ch.length();
+        int count = 0, ans=0;
+        stack<char> s;
+        for(int i=0; i<n; i++)
+        {
+            if(ch[i] == '<')
+            {
+                s.push('<');
+            }
+            else
+            {
+                if(s.empty())
+               {
+                   break;
+               }
+                else
+                {
+                    count += 2;
+                    s.pop();
+                    if(s.empty())
+                    {
+                        ans = count;
+                    }
+                }
+            }
+        }
+        cout<<ans<<endl;
+    }
+}
+
+problem - https://www.codechef.com/LRNDSA02/problems/ZCO12001
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t,x,i=1,height = 0, start = 0, len = 0 , maxLen = 0, start_maxLen = 0, top =0;
+	cin>>t;
+	stack<pair<int,int>> st;
+	while(t--)
+	{
+	    cin>>x;
+	    //cout<<i<<" "<<x<<"\n";
+	    if(x == 1){
+	        st.push(make_pair(1,i));
+	        
+	    }if(x == 2){
+	        if(st.size() > height){
+	            start = i-1;
+	            height = st.size();
+	        }
+	        
+	        top = (st.top()).second;
+	        st.pop();
+	        len += 2;
+	        if(st.empty()){
+	            if(len > maxLen){
+	             start_maxLen = top;
+	             maxLen = len;   
+	            }
+	            len = 0;
+	        }
+	    }
+	    
+	     i++;
+	}
+	cout<<height<<" "<<start<<" "<<maxLen<<" "<<start_maxLen;
+	return 0;
+}
+
+
+/////////Infix to Postfix--
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll prec(char c) { 
+    if(c == '^') 
+    return 3; 
+    else if(c == '*' || c == '/') 
+    return 2; 
+    else if(c == '+' || c == '-') 
+    return 1; 
+    else
+    return -1; 
+} 
+void postfix(string s){
+    string ans="";
+    stack<char> st;
+    st.push('N'); 
+    ll l = s.length(); 
+    for(int i = 0; i < l; i++) { 
+        if((s[i] >= 'a' && s[i] <= 'z')||(s[i] >= 'A' && s[i] <= 'Z')) 
+           ans+=s[i]; 
+   
+        else if(s[i] == '(') 
+          st.push('('); 
+           
+        else if(s[i] == ')') { 
+            while(st.top() != 'N' && st.top() != '(') { 
+                char c = st.top(); 
+                st.pop(); 
+                ans += c; 
+            } 
+            if(st.top() == '(') { 
+                char c = st.top(); 
+                st.pop(); 
+            } 
+        } 
+        else{ 
+            while(st.top() != 'N' && prec(s[i]) <= prec(st.top()) ) { 
+                char c = st.top(); 
+                st.pop(); 
+                ans += c; 
+            } 
+            st.push(s[i]); 
+        } 
+    } 
+    while(st.top() != 'N') { 
+        char c = st.top(); 
+        st.pop(); 
+        ans += c; 
+    } 
+    cout << ans << endl; 
+}
+int main() {
+	// your code goes here
+	ll t;
+	cin>>t;
+	while(t--){
+	    ll n;
+	    cin>>n;
+	    string str;
+	    cin>>str;
+	    postfix(str);
+	   
+	}
+	return 0;
+}
+
+

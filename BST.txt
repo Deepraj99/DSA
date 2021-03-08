@@ -1,0 +1,180 @@
+// Implementation and Inorder print
+
+struct Node
+{
+    int data;
+    struct Node *left, *right;
+};
+
+Node *newNode(int data)
+{
+    Node* temp = new Node();
+    temp->data = data;
+    temp->left = temp->right = NULL;
+    return temp;
+}
+
+Node *insert(Node *root, int data)
+{
+    if(root == NULL)
+        return newNode(data);
+    
+    if(root->data > data)
+        root->left = insert(root->left, data);
+    else
+        root->right = insert(root->right, data);
+
+    return root;
+}
+
+void Inorder(struct Node* root)
+{
+    if(root == NULL)
+        return;
+    else
+    {
+        Inorder(root->left);
+        cout << root->data << " ";
+        Inorder(root->right);
+    }
+}
+
+int32_t main()
+{
+	IOS
+	#ifndef ONLINE_JUDGE
+	if (fopen("input.txt", "r"))
+	{
+		freopen("input.txt", "r", stdin);
+		freopen("output.txt", "w", stdout);
+	}
+	#endif
+
+        struct Node *root = insert(root, 50);
+        insert(root, 30);
+        insert(root, 20);
+        insert(root, 40);
+        insert(root, 70);
+        insert(root, 60);
+        insert(root, 80);
+
+        Inorder(root);
+    return 0;
+}
+
+
+//Deleting a node
+struct Node 
+{
+    int data;
+    Node *left, *right;
+};
+
+Node *newNode(int data)
+{
+    Node *temp = new Node();
+    temp->data = data;
+    temp->left = temp->right = NULL;
+
+    return temp;
+}
+
+Node *Insert(Node *root, int data)
+{
+    if(root == NULL)
+        return newNode(data);
+
+    if(root->data > data)
+        root->left = Insert(root->left, data);
+    else
+        root->right = Insert(root->right, data);
+    
+    return root;
+}
+
+void Inorder(Node *root)
+{
+    if(root == NULL)
+        return;
+    else
+    {
+        Inorder(root->left);
+        cout << root->data << " ";
+        Inorder(root->right);
+    }
+}
+
+Node* FindMax(Node *root)
+{
+    Node *curr = root;
+
+    while(curr->right != NULL)
+        curr = curr->right;
+    
+    return curr;
+}
+
+Node* Delete(Node *root, int data)
+{
+    Node *temp;
+
+    if(!root)
+        return root;
+    else if(root->data > data)
+        root->left = Delete(root->left, data);
+    else if(root->data < data)
+        root->right = Delete(root->right, data);
+    else
+    {
+        if(root->left && root->right)
+        {
+            temp = FindMax(root->left);
+            root->data = temp->data;
+            root->left = Delete(root->left, root->data);
+        }
+        else
+        {
+            if(!root->left)
+            {
+                root = root->right;
+                root->right = NULL;
+            }
+            if(!root->right)
+            {
+                root = root->left;
+                root->left = NULL;
+            }
+        }
+        
+    }
+    return root;
+}
+
+int32_t main()
+{
+	IOS
+	#ifndef ONLINE_JUDGE
+	if (fopen("input.txt", "r"))
+	{
+		freopen("input.txt", "r", stdin);
+		freopen("output.txt", "w", stdout);
+	}
+	#endif
+
+    Node *root = NULL;
+    root = Insert(root, 4);
+    root = Insert(root, 2);
+    root = Insert(root, 8);
+    root = Insert(root, 1);
+    root = Insert(root, 5);
+    root = Insert(root, 9);
+    root = Insert(root, 7);
+    root = Insert(root, 6);
+
+    Inorder(root);
+    cout << endl;
+    Delete(root, 8);
+    Inorder(root);
+
+    return 0;
+}

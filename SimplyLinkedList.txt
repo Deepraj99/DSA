@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+#include<conio.h>
+using namespace std;
+struct node
+{
+    int info;
+    struct node *next;
+}*start=NULL;
+
+void create()
+{
+    char ch;
+    do
+    {
+        struct node *ptr;
+        struct node *temp;
+        ptr = (struct node *)malloc(sizeof(struct node));
+        cout<<"\n"<<"Enter value : ";
+        cin>>ptr->info;
+        ptr->next = NULL;
+        if(start==NULL)
+      {
+        start = ptr;
+        temp = ptr;
+      }
+       else
+      {
+        temp->next = ptr;
+        temp = ptr;
+      }
+      cout<<"Press a to exit and q to continue : ";
+      ch = getche();
+    }
+    while(ch!='a');
+}
+void disp()
+{
+    struct node *ptr;
+    ptr = start;
+    while(ptr != NULL)
+    {
+        cout<<" "<<ptr->info<<" ";
+        ptr = ptr->next;
+    }
+}
+int main()
+{
+    create();
+    disp();
+}

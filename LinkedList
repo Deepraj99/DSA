@@ -1,0 +1,217 @@
+# Creating a linked list -
+struct node
+{
+    int data;
+    struct node *next;
+}*head = NULL;
+
+
+void create()
+{
+    struct node *ptr=NULL, *current=NULL;
+    int n=5;
+    do
+    {
+        ptr = (struct node*)malloc(sizeof(struct node));
+        if(ptr == NULL)
+        {
+            cout << "memory not avail.." << endl;
+            return;
+        }
+        puts("enter data : ");
+        cin >> ptr->data;
+        ptr->next = NULL;
+
+        if(head == NULL)
+        {
+            head = ptr;
+            current = ptr;
+        }
+        else
+        {
+            current->next = ptr;
+            current = ptr;
+        }    
+        n--;
+    } while (n > 0);
+}
+
+void display()
+{
+    struct node *temp; //temp = head
+    if(head == NULL)
+    {
+        cout << "list is empty..";
+    }
+    else
+    {
+        temp = head;
+        while(temp != NULL)
+        {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+}
+
+int32_t main()
+{
+    IOS
+    puts("Creating linked list..");
+    create();
+    display();
+    return 0;
+}
+
+
+# Reversing a linked list -
+
+void reverse()
+{
+    struct node *prev, *current;
+    if(head == NULL)
+    {
+        cout << "empty list!" << endl;
+    }
+    else
+    {
+        prev = head;
+        current = head->next;
+        head = head->next;
+        prev->next = NULL;
+
+        while(head != NULL)
+        {
+            head = head->next;
+            current->next = prev;
+            prev = current;
+            current = head;
+        }
+        head = prev;
+        cout << "reversed successfully!" << endl;
+    }
+    
+}
+
+# Reversing recursivly
+
+    Node* reverse(Node* head)
+    {
+        if (head == NULL || head->next == NULL)
+            return head;
+ 
+        Node* rest = reverse(head->next);
+        head->next->next = head;
+        
+        head->next = NULL;
+
+        return rest;
+    }
+
+
+# NOdeInsertionAtTheBegining
+struct node
+{
+    int data;
+    struct node *next;
+}*head = NULL;
+
+void create(int n)
+{
+    struct node *ptr, *current;
+    
+    for(int i=0; i<n; i++)
+    {
+        ptr = (struct node*)malloc(sizeof(struct node));
+        if(ptr == NULL)
+        {
+            cout << "Unable to alloacte memory.. " << endl;
+            return;
+        }
+        else
+        {
+            cout << "enter data : ";
+            cin >> ptr->data;
+            ptr->next = NULL;
+
+            if(head == NULL)
+            {
+                head = ptr;
+                current = ptr;
+            }
+            else
+            {
+                current->next = ptr;
+                current = ptr;
+            }   
+        }
+    }
+}
+void insertAtBegining(int num)
+{
+    struct node *temp;
+    temp = (struct node*)malloc(sizeof(struct node));
+    if(temp == NULL)
+    {
+        cout << "Unable to alloacte memory.. " << endl;            
+        return;
+    }
+    temp->data = num;
+    temp->next = head;
+    head = temp;
+}
+void display()
+{
+    struct node *temp;
+    if(head == NULL)
+    {
+        cout << "list is empty!" << endl;
+    }
+    else
+    {
+        temp = head;
+        while(temp != NULL)
+        {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+    
+}
+
+int32_t main()
+{
+    int n;
+    cout << "enter number of nodes : ";
+    cin >> n;
+
+    create(n);
+    cout << "enter number to insert at begining : ";
+    int num;
+    cin >> num;
+    insertAtBegining(num);
+    display();
+    return 0;
+}
+
+# Insertion at the end-
+void insertAtEnd(int num)
+{
+    struct node *temp, *ptr;
+    temp = (struct node*)malloc(sizeof(struct node));
+    if(temp == NULL)
+    {
+        cout << "Unable to alloacte memory.. " << endl;            
+        return;
+    }
+    temp->data = num;
+    temp->next = NULL;
+    ptr = head;
+    while(ptr->next != NULL)
+    {
+        ptr = ptr->next;
+    }
+    ptr->next = temp;
+}

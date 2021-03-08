@@ -1,0 +1,147 @@
+WATCH some videos its nessery for future
+
+THORY AND EXPLANATION FOR CODE WITH HARRY NOTES -- and use some part from here
+
+Time Complexity - Time complexity is a concept that deals with the quantification of the amount of time taken by a set of code or algorithm to process or run as a function of the amount of input.
+MCQ's problems
+Eg1 -- 
+int i, j, k = 0; 
+for (i = n / 2; i <= n; i++) { 
+	for (j = 2; j <= n; j = j * 2) { 
+		k = k + n / 2; 
+	} 
+} 
+If you notice, j keeps doubling till it is less than or equal to n. Number of times, we can double a number till it is less than n would be log(n).
+Let’s take the examples here.
+for n = 16, j = 2, 4, 8, 16
+for n = 32, j = 2, 4, 8, 16, 32
+So, j would run for O(log n) steps.
+i runs for n/2 steps.
+So, total steps = O(n/ 2 * log (n)) = O(n*logn)
+
+Eg2 --
+for (i=0; i<n; i++)        i       j        n. of times
+{                          0       0        0
+   for(j=0; j<i; j++)      1       2times   1
+   {                       2       3times   2
+      statement;           3       4times   3
+   }                       
+}                          n       n+1times  n
+                                             ____________
+                                             f(n) = n(n+1)/2
+                                             O(n^2) - also write some procedure
+
+Eg3 --
+p=0;                       i        p
+for (i=0; p<=n; i++)       1        0+1
+{                          2        1+2
+   p = p+i;
+}                          k        1+2+---+k
+                         __________________________
+                                    assume p>n
+                                     p = k(k+1)/2 > n
+                                     k^2 > n
+                                     k > sqrt(n)
+
+Eg4 --
+for (i=1; i<n; i=i*2)    i = 1x2, 2x2, (2^2)x2, (2^3)x2, ---- 2^k
+    statement;           assume i>n
+                                i = 2^k
+                                2^k >= n
+                                2^k = n
+                                k = log2(n)
+                                O(log2(n))
+                                      
+
+Space Complexity - Space complexity is an amount of memory used by the algorithm (including the input values of the algorithm), to execute it completely and produce the result.
+We know that to execute an algorithm it must be loaded in the main memory. The memory can be used in different forms:
+Variables (This includes the constant values and temporary values)
+Program Instruction
+Execution
+
+## Asymptotic Notation - Mathematical way of representing the time complexity
+1. Big Oh Notation
+2. Big Omega Notation
+3. Theta Notation
+                    ----- in copy or Lec 3 pdf on classroom for definition, graph
+
+## Array and Abstract data types -- lec 5 or codewithherry notes
+
+NOtes -- Stack Fully detailed on pdf
+## Stack - Stack is a linear data structure which follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out).
+It is just like a pile of plates kept on top of each other. It serves as a collection of elements, with two main principal operations: push, which adds an element to the collection, and pop, which removes the most recently added element that was not yet removed.
+It has some basic operations -
+Push: Add an element to the top of a stack
+Pop: Remove an element from the top of a stack
+IsEmpty: Check if the stack is empty
+IsFull: Check if the stack is full
+Peek: Get the value of the top element without removing it
+
+DEMO to write an algorithm --
+The operations work as follows:
+
+A pointer called TOP is used to keep track of the top element in the stack.
+When initializing the stack, we set its value to -1 so that we can check if the stack is empty by comparing TOP == -1.
+On pushing an element, we increase the value of TOP and place the new element in the position pointed to by TOP.
+On popping an element, we return the element pointed to by TOP and reduce its value.
+Before pushing, we check if the stack is already full
+Before popping, we check if the stack is already empty
+
+Code - 
+#include <stdio.h>
+int stack[100],top=-1;
+void push (int val)
+{
+if (top == 100 )
+printf("\n Overflow");
+else
+stack[++top] = val;
+}
+int pop ()
+{
+if(top == -1)
+
+return -1;
+else
+return stack[top--];
+}
+int main() {
+for(int i = 0 ; i < 10 ; i++)
+{
+int x;
+printf("Enter element : ");
+scanf("%d",&x);
+push(x);
+if(i != 0){
+printf("after popping and pushing new element : ");
+}
+printf("%d \n",pop());
+}
+printf("%d \n",pop());
+return 0;
+}
+
+-- PREFIX to POSTFIX code on lab assignment 2
+
+• String Reversal
+• Balanced Parenthesis
+• UNDO/REDO
+• System Stack for activation Records
+• Infix, Prefix, Postfix Evaluation
+• Depth First Search
+
+##Quick Sort - on the desktop
+
+## Infix to Prefix or Postfix -- for this just run a code on compiler and write the output.  CODE using Stack on assignment 2
+
+## Polish Notation - https://www.tutorialspoint.com/data_structures_algorithms/expression_parsing.htm
+
+## Program for Tower of Hanoi
+
+
+## Queue - enqueue - dequeue detailed on pdf
+
+## priority Queue
+
+##BUbble sort
+

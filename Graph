@@ -1,0 +1,291 @@
+Three ways to repersent a graph-
+1. collection of edges - E = {(1, 2), (2, 3), (1, 3)}
+2. 2D matrix of edges - takes extra space
+3. efficient methode - using array of linked list
+
+Implementation- 
+class Graph
+{
+    int V;
+
+    //array of integers
+    //int *arr = new int[V];
+
+    //array of V linked list
+    //list<int> *arr = new list<int>[V]; 
+
+    //int *arr   
+    list<int> *adjList;  //asjacency list
+public:
+    Graph(int v) //Graph constructor
+    {
+        V = v;
+        adjList = new list<int>[v];
+    }
+    void addEdge(int u, int v, bool biDir=true) // biDirectional
+    {
+        adjList[u].push_back(v);
+        if(biDir)
+            adjList[v].push_back(u);
+    }
+    void printAdjList()
+    {
+        for(int i=0; i<V; i++)
+        {
+            cout << i << " -> ";
+            for(int node : adjList[i]) //for each loop
+                cout << node << ", ";
+            cout << endl;
+        }
+    }
+};
+
+int32_t main()
+{
+    IOS
+    #ifndef ONLINE_JUDGE
+	if (fopen("input.txt", "r"))
+	{
+		freopen("input.txt", "r", stdin);
+		freopen("output.txt", "w", stdout);
+	}
+	#endif
+
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(0, 3);
+    g.addEdge(1, 3);
+    g.addEdge(3, 2);
+
+    g.printAdjList();
+    return 0;
+}
+
+using map and templete
+
+// templete for a generic graph any type of data int, string, bool....
+template<typename T>
+class Graph
+{
+    map<T, list<T>> adjList;
+
+public:
+    Graph()
+    {
+
+    }
+    //assuming biDirection graph
+    void addEdge(T u, T v)
+    {
+        adjList[u].push_back(v);
+        adjList[v].push_back(u);
+    }
+    void printAdjList()
+    {
+        for(auto row : adjList)
+        {
+            T key = row.first;
+            cout << key << " -> ";
+            for(T element : row.second)
+                cout << element << ", ";
+            cout << endl;
+        }
+    }
+};
+int32_t main()
+{
+    Graph<string> g;
+    g.addEdge("Amritsar", "Delhi");
+    g.addEdge("Amritsar", "Jaipur");
+    g.addEdge("Delhi", "Siachen");
+    g.addEdge("Delhi", "Banglore");
+    g.addEdge("Delhi", "Agra");
+    g.addEdge("Amritsar", "Siachen");
+
+    g.printAdjList();
+    return 0;
+}
+
+Bool --
+bool *visited = new bool[V+1]{0};
+
+BFS --
+unweight graph -> BFS
+    void bfs(int src)
+    {
+        queue<int> q;
+        bool *visited = new bool[V+1]{0};
+        int *distance = new int[V+1]{0}; // array initilize
+
+        q.push(src);
+        visited[src] = true;
+
+        while(!q.empty())
+        {
+            int node = q.front();
+            q.pop();
+            cout << node << " ";
+            for(int neighbour : adjList[node])
+            {
+                if(!visited[neighbour])
+                {
+                    q.push(neighbour);
+                    visited[neighbour] = true;
+                    distance[neighbour] = distance[node] + 1;
+                }
+            }
+        }
+        cout << endl;
+        for(int i=0; i<V; i++)
+        {
+            cout << i << "th node having distance of : " << distance[i] << endl;
+        }
+    }  }
+    }
+    
+        Graph g(6);
+    g.addEdge(0, 1);
+    g.addEdge(1, 2);
+    g.addEdge(0, 4);
+    g.addEdge(2, 4);
+    g.addEdge(3, 2);
+    g.addEdge(2, 3);
+    g.addEdge(3, 5);
+    g.addEdge(4, 3);
+
+    //g.printAdjList();
+    g.bfs(0);
+    return 0;
+    
+    
+DFS --
+for Directed or undirected graph--
+void dfs(int starting_point, vector<int> g[], bool *visited)
+{
+    visited[starting_point] = true;
+    cout << starting_point << " ";
+    
+    for(int i=0; i<g[starting_point].size(), ++i)
+    {
+        if(visited[g[starting_point][i]] == false)
+            dfs(g[starting_point][i], g, visited);
+    }
+}
+    
+    
+Sortest Path -- 
+    void bfs(int src, int dist)
+    {
+        queue<int> q;
+        bool *visited = new bool[V+1]{0};
+        int *distance = new int[V+1]{0}; // array initilize
+        int *parent = new int[V+1];
+
+        for(int i=0; i<V; i++)
+            parent[i] = -1;
+
+        q.push(src);
+        visited[src] = true;
+
+        while(!q.empty())
+        {
+            int node = q.front();
+            q.pop();
+            cout << node << " ";
+            for(int neighbour : adjList[node])
+            {
+                if(!visited[neighbour])
+                {
+                    q.push(neighbour);
+                    visited[neighbour] = true;
+                    distance[neighbour] = distance[node] + 1;
+                    parent[neighbour] = node;
+                }
+            }
+        }
+        cout << endl;
+        
+        cout << "Sortest dist is : " << dist[distance] << endl;
+        cout << "Sortest path is : ";
+
+        int temp = dist;
+        while(temp != -1)
+        {
+            cout << temp << " <-- ";
+            temp = parent[temp];
+        }
+    }
+    
+Dijkstra algo--
+
+int findMin(vector<int> value, vector<bool> processed)
+{
+  int minimum = INT_MAX;
+  int vertex;
+  for(int i=0; i<9; i++)
+  {
+    if(processed[i]==false && value[i]<minimum)
+    {
+      vertex = i;
+      minimum = value[i];
+    }
+  }
+  return vertex;
+}
+
+void dijkastra(int graph[9][9])
+{
+  int parent[9];
+  vector<int> value(9, INT_MAX);
+  vector<bool> processed(9, false);
+
+  value[0] = 0;
+  parent[0] = -1;
+
+  for(int i=0; i<8; i++)
+  {
+    int temp = findMin(value, processed);
+    processed[temp] = true;
+
+    for(int j=0; j<9; j++)
+    {
+      if(graph[temp][j]!=0 && processed[j]==false && value[temp]!=INT_MAX && value[temp]+graph[temp][j]<value[j])
+      {
+        value[j] = value[temp]+graph[temp][j];
+        parent[j] = temp;
+      }
+    }
+  }
+
+  for(int i=1; i<9; i++)
+  {
+    cout << parent[i] << " " << i << " " << graph[parent[i]][i] << endl;
+  }
+}
+
+int32_t main()
+{
+  IOS
+  #ifndef ONLINE_JUDGE
+	if (fopen("input.txt", "r"))
+	{
+		freopen("input.txt", "r", stdin);
+		freopen("output.txt", "w", stdout);
+	}
+	#endif
+
+  int graph[9][9] =   { { 0, 4, 0, 0, 0, 0, 0, 8, 0 }, 
+                        { 4, 0, 8, 0, 0, 0, 0, 11, 0 }, 
+                        { 0, 8, 0, 7, 0, 4, 0, 0, 2 }, 
+                        { 0, 0, 7, 0, 9, 14, 0, 0, 0 }, 
+                        { 0, 0, 0, 9, 0, 10, 0, 0, 0 }, 
+                        { 0, 0, 4, 14, 10, 0, 2, 0, 0 }, 
+                        { 0, 0, 0, 0, 0, 2, 0, 1, 6 }, 
+                        { 8, 11, 0, 0, 0, 0, 1, 0, 7 }, 
+                        { 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
+  
+  dijkastra(graph);
+  return 0;
+}
+

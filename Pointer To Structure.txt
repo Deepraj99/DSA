@@ -1,0 +1,22 @@
+struct Rectangle
+{
+   int length;
+   int breath;
+};
+
+int main()
+{
+  struct Rectangle r = {10,5};
+  struct Ractangle *p=&r;
+  r.length = 15; //right
+  p.length = 15; //wrong because pointer cannot access directly a data variable because it is a address variable
+  (*p).lenght = 15; //to accesing data variable we cann use it. here () is must because first executes . and then *
+  p -> length = 15 // also , acually it is simple
+
+here is one more solution of it..
+int main()
+{
+   p = (struct Rectangle *)malloc(sizeof(struct Rectangle)); //in c
+   p = new struct Rectanle[sizeof(struct Rectangle)]; //in c++ maybe
+   p->length = 15;
+   p->length = 10;

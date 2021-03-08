@@ -1,0 +1,83 @@
+// https://www.hackerrank.com/challenges/queue-using-two-stacks/problem
+
+
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main()
+{
+    ll t;
+    cin>>t;
+    queue<int> q;
+    while(t--)
+    {
+        ll n;
+        cin>>n;
+        if( n==1 )
+        {
+            ll m;
+            cin>>m;
+            q.push(m);
+        }
+        else if( n==2 )
+            q.pop();
+        else if( n==3 )
+            cout<<q.front()<<endl;
+    }
+    return 0;
+}
+
+// one more solution
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    
+    int q,a,b;
+    cin>>q;
+    
+    stack<int>s1;
+    stack<int>s2;
+    
+    for(int i=0; i!=q; i++)
+    {
+        cin>>a;      
+        if(a == 1)
+        {
+            cin>>b;
+            s1.push(b);
+        }
+        else if(a == 2)
+        {
+            if(s2.empty())
+            {
+                while(!s1.empty())
+                {
+                    int data = s1.top();
+                    s1.pop();
+                    s2.push(data);
+                }
+                
+            }
+            s2.pop();
+        }
+        else if(a == 3)
+        {    	
+            if(s2.empty() == true)
+            {
+                while(!s1.empty())
+                {
+                    int data = s1.top();
+                    s1.pop();
+                    s2.push(data);
+                }             
+            }
+            cout<<s2.top()<<endl;
+        }
+    }
+    return 0;
+}
+
+## periorty_queue - for decreasing order

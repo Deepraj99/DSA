@@ -1,0 +1,241 @@
+Button - 
+creation>>(res>value>string.xml>editor>key/id>name)>>click at side mark to name option>>select id name>>done
+we can do it directly but if we have many pages and have to change name every where then this way is be simple.
+if we have to change then go to string.xml and change name and save it by ctrl+s
+
+Message by clicking on button -
+click on the button>>go to attributes>>onClick>>give a name(eg. sendNow)>>go to activity.java>>create a function called sendNow>>
+public void sendNow(View view){
+Toast.makeText(---- text: "sending data.."----)--;
+}
+
+TextView = only for read >> contect to code throungh string.xml
+
+EditView = for typing text
+
+Hint =
+goto editView icon>>res>string.xml>editor>name (eg. Enter name )>id>>hind>>hint side option>>choose Enter name>>done
+if you found any warning goto warning suggestions and fix it by clicking in suggestion
+
+Match constraint - match all the constraint situated in the layout
+
+horizontal layout - constraint will be add in a row
+
+linear layout - constraint will be add in a coloumb
+
+linear layout vertical>>linear layout horizontal>>weight 1
+
+layout margin - search margin and set distance in sp by all directions
+
+Image - only latters and underscore allow>>upload to android stdio>>string.xml
+
+Padding - for image resize
+
+If we have to click on a image then give a name at onClick function and tag
+--------------------------------------------------------------------------------
+# for cheaking that functions are working or not -
+Log.i(tag:"info", "button pressed"orValueOfThis);
+
+# Currency Converter
+public void currencyCoverter(View view){
+        Log.i("info", "Button pressed");
+        EditText editText = (EditText) findViewById(R.id.editText);
+        String amountInDollar = editText.getText().toString();
+        double amountInFloat = Double.parseDouble(amountInDollar);
+        double IndianRupee = amountInFloat*74.06;
+        //String answer = Double.toString(IndianRupee);
+        String answer = String.format("%.2f",IndianRupee);
+        Toast.makeText(this, "$"+amountInDollar+" is RS. "+answer, Toast.LENGTH_LONG).show();
+        Log.i("answer : ", answer);
+
+# NumberIdentifier
+package com.example.numberidentifier;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    class Number{
+        int number;
+        public boolean isSqure() {
+            double squreRoot = Math.sqrt(number);
+            if(squreRoot == Math.floor(squreRoot)) {
+                return  true;}
+                else {
+                    return  false;
+            }
+        }
+        public boolean isTraingular(){
+            int x = 1;
+            int traingularNumber = 1;
+            while (traingularNumber < number){
+                x++;
+                traingularNumber += x;
+            }
+            if(traingularNumber == number){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+
+    public void numberIdentifier(View view){
+        String message;
+        EditText editText = (EditText) findViewById(R.id.editText);
+        if(editText.getText().toString().isEmpty()){
+            message = "Enter a number!";
+        }
+        else{
+        Number myNumber = new Number();
+        myNumber.number = Integer.parseInt(editText.getText().toString());
+        message = editText.getText().toString();
+        if(myNumber.isSqure() && myNumber.isTraingular()){
+            message += " is squre and traingular!";
+        }
+        else if(myNumber.isSqure()){
+            message += " is squre but not traingular!";
+        }
+        else if(myNumber.isTraingular()){
+            message += " is traingular but not squre!";
+        }
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+
+# Animation
+
+
+    boolean bastIsShowing = true;
+    public void fade(View view){
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+        if(bastIsShowing) {
+             bastIsShowing = false;
+            imageView.animate().alpha(0).setDuration(1000);
+            imageView1.animate().alpha(1).setDuration(1000);
+        }
+        else
+        {
+            bastIsShowing = true;
+            imageView1.animate().alpha(0).setDuration(1000);
+            imageView.animate().alpha(1).setDuration(1000);
+        }
+    }
+
+
+## view>find>replace>replaceall
+
+## VideoUpload
+res>>new>>folder>>raw
+
+## Video Demo
+package com.example.videodemo;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.MediaController;
+import android.widget.VideoView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("android.resource://"+getPackageName()+"/"+R.raw.demovideo);
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        videoView.setMediaController(mediaController);
+        videoView.start();
+    }
+}
+
+## Media Player
+package com.example.audiodemo;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+
+    MediaPlayer mediaPlayer;
+    public void play(View view){
+        mediaPlayer.start();
+    }
+    public void pause(View view){
+        mediaPlayer.pause();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.music);
+    }
+}
+
+## Layout Gravity
+
+<Button
+
+android:id
+//android:layout_width
+//android:layout_height
+android:text
+android:layout_gravity"fill"
+android:layout_row(1)
+android:layout_coloum(1)/>
+
+## Basic Phrases
+
+## LIST VIEW
+package com.example.listviewdemo;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ListView listView = (ListView) findViewById(R.id.listView);
+        ArrayList<String> myFriends = new ArrayList<String>();
+        myFriends.add("Deepak");
+        myFriends.add("Devang");
+        myFriends.add("Johri");
+        myFriends.add("Anoop");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myFriends); //to connect array and list view
+        listView.setAdapter(arrayAdapter);//after connecting array and list view list view don't to how to show [this is for showing as a list]    //there are various thing at the screen but what we have to shiw up on the list view [ this, android.R.layout.simple_list_item_1,] we use this for that
+
+
+        // Another way to initilize a array
+        // final ArrayList<String> myFriends = new ArrayList<String> ("Deepak", "Devang", "Johri", "Abhimanyu"); 
+
+    }
+}

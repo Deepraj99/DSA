@@ -1,0 +1,47 @@
+QuickSort - O(nlogn) - avg. case
+
+void swap1(int* a, int* b)
+{
+	int temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+int partition(int arr[], int low, int high)
+{
+	int i=low-1;
+	int pivot = arr[high];
+	for(int j=low; j<high; j++)
+	{
+		if(arr[j] < pivot)
+		{
+			i++;
+			swap1(&arr[i], &arr[j]);
+		}
+	}
+	swap1(&arr[i+1], &arr[high]);
+	return i+1;
+}
+void sort1(int arr[], int low, int high)
+{
+	if(low < high)
+	{
+		int pi = partition(arr, low, high);
+
+		sort1(arr, low, pi-1);
+		sort1(arr, pi+1, high);
+	}
+}
+
+int32_t main()
+{
+	IOS
+	test
+	{
+		input(arr)
+		sort1(arr, 0, n-1);
+		f(n)
+		cout<<arr[i]<<" ";
+	}
+	return 0;
+}

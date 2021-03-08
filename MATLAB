@@ -1,0 +1,136 @@
+# MATLAB - is a programming platform designed specifically for engineers and scientists. The heart of MATLAB is the MATLAB language, a matrix-based language allowing the most natural expression of computational mathematics.
+
+# clc - clear all
+
+# if you initilize a value in command window and put a ';' after that, it wouldn't print in the next line otherwise vise versa.
+
+# Initilise a matrix - A = [1, 2, 3; 4, 5, 6; 7, 8, 9]
+M = A./B
+C = A+B
+D = A-B
+
+
+# A = [a, b, c; d, e, f; g, h, i]
+The determinant is:
+|A| = a(ei − fh) − b(di − fg) + c(dh − eg)
+
+A_det = det(A)
+
+# A_transpose = transpose(A)
+# A_5 = find(A==5)
+
+# B=[-9,-10,11,13,18,9,0,0,-1]
+  B=zeros(10,1);   %uses to print all values of set
+  
+# every time save your code
+# input - A = [1, 1, 1, 0]
+# function output - define output
+# length = tells about input and output length
+# zeros = iniltilise output to 0
+# end = end the loop
+# Implementation of OR gate
+
+function output = OR_gate(a, b)
+    n = length(a);
+    output = zeros(1, n);
+    for j=1:n                    % no need to run just go to command
+        if(a(j)==0 && b(j)==0)   % while saving file name must be
+            output(j) = 0;       % same as function name
+        else                     % in command window enter input
+            output(j)=1;         % and call the function
+        end
+    end
+end
+
+or 
+
+function output = OR_gate(a, b)
+  n = length(a);
+  output = zeros(1, n);
+  for j = 1:n
+      output(j) = a(j)|b(j);
+  end
+end 
+
+# Implementation of AND gate
+
+function output = AND_gate(a, b)
+  n = length(a);
+  output = zeros(1, n);
+  for j = 1:n
+      output(j) = a(j)&b(j);
+  end
+end
+
+# Implementation of NOT gate
+
+function output = NOT_gate(a)
+n = length(a);
+output = zeros(1, n);
+    for j=1:n
+        if(a(j)==0)
+            output(j) = 1;
+        else
+            output(j) = 0;
+        end
+    end
+end
+
+# Implementation of NAND gate
+
+function output = NAND_gate(a, b)
+n = length(a);
+output = zeros(1, n);
+    for j=1:n
+        if((a(j)&b(j))==1)
+            output(j) = 0;
+        else
+            output(j) = 1;
+        end
+    end
+end
+
+# Implementation of NOR gate
+
+function output = NOR_gate(a, b)
+n = length(a);
+output = zeros(1, n);
+    for j=1:n
+        if((a(j)|b(j))==1)
+            output(j) = 0;
+        else
+            output(j) = 1;
+        end
+    end
+end
+
+# Implementation of XOR gate   % output = A(!B)+(!A)B
+
+function output = XOR_gate(a, b)
+n = length(a);
+A = 0;
+B = 0;
+output = zeros(1, n);
+    for j=1:n
+        if((a(j)+b(j))==1)
+            output(j) = 1;
+        else
+            output(j) = 0;
+        end
+    end
+end
+
+# Implementation of XNOR gate  % output = (!A)(!B)+AB
+function output = XNOR_gate(a, b)
+n = length(a);
+A = 0;
+B = 0;
+output = zeros(1, n);
+    for j=1:n
+        if((a(j)+b(j))==1)
+            output(j) = 0;
+        else
+            output(j) = 1;
+        end
+    end
+end

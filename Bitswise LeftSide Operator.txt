@@ -1,0 +1,228 @@
+
+
+https://www.hackerearth.com/practice/basic-programming/bit-manipulation/basics-of-bit-manipulation/practice-problems/algorithm/nobita-in-trouble-2-5ce82e3d/?layout=old
+https://www.hackerearth.com/submission/46383561/
+
+https://www.codechef.com/LTIME86B/problems/BINFUN
+
+#include<bits/stdc++.h>
+#define IOS ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define test int t; cin>>t; while(t--)
+#define ll long long int
+#define input(a) int n; cin>>n; int a[n]; for(int i=0; i<n; i++) {cin>>a[i];}
+#define f(n) for(int i=0; i<n; i++)
+#define mod 1000000007
+#include<math.h>
+#include<string.h>
+// if( a==b ) temp=1; -- bool c = a==b;
+//#define endl "\n"
+using namespace std;
+//-----------------------------------------------------------------------------
+
+//#include <bits/stdc++.h>
+//using namespace std;
+//#define ll long long
+//
+//int getn(ll a){
+//    int x = log2(a);
+//    return x+1;
+//}
+//
+//ll geta(ll a, ll b, int ma,int mb){
+//    ll x = (a<<mb) + b;cout<<x<<endl;
+//    ll y = (b<<ma) + a;cout<<y<<endl;
+//    return abs(x-y);
+//}
+//
+//void solve(){
+//    int n;
+//    cin>>n;
+//    vector<ll> a(n,0);
+//    vector<ll> v[32];
+//    for(int i =0 ;i<n;i++){
+//        cin>>a[i];
+//    }
+//    for(int i =0;i<n;i++){
+//        int x = getn(a[i]);
+//        v[x].push_back(a[i]);
+//    }
+//    for(auto &i : v)sort(i.begin(),i.end());
+//
+//    ll ans = -1;
+//    for(int i =1;i<32;i++){
+//        for(int j = 1;j<32;j++){
+//            if(v[i].empty() || v[j].empty())continue;
+//            // cout<<v[i][0]<<":"<<i<<" , "<<v[j][v[j].size()-1]<<":"<<j<<endl;
+//            ans = max(ans,geta(v[i][0],v[j][v[j].size()-1],i,j));
+//        }
+//    }
+//    //cout<<ans<<endl;
+//}
+//
+//int main(){
+//ios_base::sync_with_stdio(false);
+//cin.tie(0);
+//cout.tie(0);
+//int tc=1;
+//cin>>tc;
+//while(tc--)
+//solve();
+//return 0;
+//}
+
+
+
+/////power of a number O(log n)
+sq = power(base, pow, mod);
+
+ll power(ll x, ll y, ll p)
+{
+    ll res = 1;
+    x = x%p;
+    if(x==0)
+        return 0;
+    while(y>0)
+    {
+        if(y&1)
+            res = ((res*x)%p+p)%p;
+        y = y>>1;
+        x = ((x*x)%p+p)%p;
+    }
+    return res%p;
+}
+
+
+
+https://www.codechef.com/problems/AND
+
+#include<bits/stdc++.h>
+#define test int t; cin>>t; while(t--)
+#define ll long long int
+#define IOS ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define INPUT(a) int n; cin>>n; int a[n]; for(int i=0; i<n; i++) {cin>>a[i];}
+#define input(a) for(ll i=0; i<n; i++) {cin>>a[i];}
+#define mod 1000000007
+//#define endl "\n"
+using namespace std;
+//-----------------------------------------------------------------------------
+
+
+int main()
+{
+    IOS
+    INPUT(a)
+    int sum, ans=0;
+    for(int i=0; i<32; i++)                            // for 32 bit compiler , 2^32
+    {
+        sum=0;
+        for(int j=0; j<n; j++)
+        {
+            if(a[j]&(1<<i))                           // if a[j]=1,2,3,4,5   it is cheaking last to first digit, (1<<i), i=0 ==2^0==1 or 001
+                sum++;                                // now use AND operator b/w a[j]&001 again i=1==2^1==10,  2^2=4==100, 2^3=8=1000 and so on
+        }
+        ans += ((sum*(sum-1))/2)*(1<<i);              // here we have to made pairs of 2 so it's nC2 or n*(n-1)/2 if we have to made pair of 3 then it's nC3
+    }                                                 // *(1<<i) == for converting binary to decimal -- a*2^0 + b*2^1 + c*2^2 + d*2^3 and so on..
+    cout<<ans;
+    return 0;
+}
+
+
+((i & (1 << j)) > 0)
+ak array ke total number of subsqquences find krne hai
+isme i outer loop ye bta rha hai ki total number of subseq kitne honge and 1-4-8-16.... ke bad digits badhte jayenge and subseq me number bhi iske acc bdhte jayenge
+
+
+
+
+
+https://www.codechef.com/problems/MARCHA1
+
+
+
+#include<bits/stdc++.h>
+#define test int t; cin>>t; while(t--)
+#define ll long long int
+#define IOS ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define INPUT(a) int n; cin>>n; int a[n]; for(int i=0; i<n; i++) {cin>>a[i];}
+#define input(a) for(ll i=0; i<n; i++) {cin>>a[i];}
+#define mod 1000000007
+#define endl "\n"
+using namespace std;
+//-----------------------------------------------------------------------------
+
+int main()
+{
+    IOS
+    test
+    {
+        int m, n, temp=0, sum;
+        cin>>n>>m;
+        unsigned int a[20];
+        for(int i=0; i<n; i++)
+            cin>>a[i];
+        for(int i=0; i<(1<<n); i++)
+        {
+            sum=0;
+            for(int j=0; j<n; j++)
+            {
+                if(i&(1<<j))
+                    sum+=a[j];
+            }
+            if(sum==m){temp=1;break;}
+        }
+        if(temp == 1)
+            cout<<"Yes"<<endl;
+        else
+            cout<<"No"<<endl;
+    }
+	return 0;
+}
+
+
+
+cpp_int
+
+#include<bits/stdc++.h>
+#include <boost/multiprecision/cpp_int.hpp>
+#define test int t; cin>>t; while(t--)
+//#define ll long long int
+//#define forr(n) for(int i=0; i<n; i++)
+#define IOS ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+//#define INPUT(a) int n; cin>>n; int a[n]; for(int i=0; i<n; i++) {cin>>a[i];}
+//#define input(a) for(ll i=0; i<n; i++) {cin>>a[i];}
+//#define mod 1000000007
+//#include<math.h>
+//#define endl "\n"
+using namespace std;
+using boost::multiprecision::cpp_int;
+//-----------------------------------------------------------------------------
+
+cpp_int ans(int n)
+
+https://practice.geeksforgeeks.org/problems/nth-catalan-number/0
+{
+    cpp_int a[n+1];
+    a[0] = a[1] = 1;
+        for(int i=2; i<=n; i++)
+        {
+            a[i] = 0;
+            for(int j=0; j<i; j++)
+            {
+                a[i] += a[j]*a[i-j-1];
+            }
+        }
+        return a[n];
+}
+
+int main() {
+
+	IOS
+	test
+	{
+	    int n;
+	    cin>>n;
+	    cout<<ans(n)<<endl;
+	}
+
+	return 0;
+}

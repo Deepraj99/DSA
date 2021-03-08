@@ -1,0 +1,127 @@
+#include<bits/stdc++.h>
+using namespace std;
+int pos=0, pos1;
+struct node
+{
+    long long int info;
+    struct node* next;
+}*start = NULL;
+
+void create()
+{
+    long long int n, loop;
+    cin>>n>>loop;
+    while(n--)
+    {
+        struct node* ptr, *temp;
+        ptr = (struct node*)malloc(sizeof(struct node));
+        cin>>ptr->info;
+        ++::pos;
+        ptr->next = NULL;
+        if(ptr->info == loop)
+        {
+            start = NULL;
+            ::pos1 = ::pos-1;
+        }
+        if(start == NULL)
+        {
+            start = ptr;
+            temp = ptr;
+        }
+        else
+        {
+            temp->next = ptr;
+            temp = ptr;
+        }
+    }
+}
+
+void process1()
+{
+    long long int count2=0;
+    struct node* ptr;
+    ptr = start;
+    while(ptr != NULL)
+    {
+        if(ptr->info%2 != 0)
+        {
+            count2++;
+        }
+        ptr = ptr->next;
+    }
+    cout<<count2<<endl<<endl;
+}
+
+void disp1()
+{
+    struct node* ptr;
+    long long int a[100000], i=0, c, aa=1;
+    ptr = start;
+    while(ptr != NULL)
+    {
+        if(ptr->info%2 != 0)
+        {
+            a[i] = aa+::pos1;
+            i++;
+            aa++;
+        }
+        else
+        {
+            aa++;
+        }
+        ptr = ptr->next;
+    }
+    c = i;
+    for(i=0; i<c; i++){
+        cout<<a[i]<<" ";}
+        cout<<endl<<endl;
+}
+
+void process2()
+{
+    long long int count1=0;
+    struct node* ptr;
+    ptr = start;
+    while(ptr != NULL)
+    {
+        if(ptr->info%2 == 0)
+        {
+            count1++;
+        }
+        ptr = ptr->next;
+    }
+    cout<<count1<<endl<<endl;
+}
+
+void disp2()
+{
+    struct node* ptr;
+    long long int a[100000], i=0, c, aa=1;
+    ptr = start;
+    while(ptr != NULL)
+    {
+        if(ptr->info%2 == 0)
+        {
+            a[i] = aa+::pos1;
+            i++;
+            aa++;
+        }
+        else
+        {
+            aa++;
+        }
+        ptr = ptr->next;
+    }
+    c = i;
+    for(i=0; i<c; i++)
+        cout<<a[i]<<" ";
+}
+
+int main()
+{
+    create();
+    process1();
+    disp1();
+    process2();
+    disp2();
+}

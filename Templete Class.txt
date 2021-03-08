@@ -1,0 +1,78 @@
+class Arithametic
+{
+  private:
+          int a;
+          int b;
+   public:
+   Arithametic( int a, int b );
+          int add();
+          int sub();
+  Arithametic :: Arithametic( int a, int b )
+{
+    this.a = a;
+    this.b = b;  //here b used with dott oprator is private data type
+}
+  Arithametic :: add()
+{
+   int c;
+   c = a+b;
+   return c;
+}
+ Arithametic :: sub()
+{
+   int c;
+   c = a-b;
+   return;
+}
+
+int main()
+{
+   Arithametic ar(10,5);
+   cout<<ar.add();
+   Arithametic<<arr.sub();
+}
+
+
+
+
+if we have to use different of datatype--
+templete <class T>
+class Arithametic
+{
+  private:
+          T a;
+          T b;
+   public:
+   Arithametic( T a, T b );
+          T add();
+          T sub();
+};
+templete <class T>
+  Arithametic<T> :: Arithametic( T a, T b )
+{
+    this.a = a;
+    this.b = b;  //here b used with dott oprator is private data type
+}
+templete <class T>
+  Arithametic :: add()
+{
+   T c;
+   c = a+b;
+   return c;
+}
+templete <class T>
+ Arithametic :: sub()
+{
+   T c;
+   c = a-b;
+   return;
+}
+
+int main()
+{
+   Arithametic<int> ar(10,5);
+   cout<<ar.add();
+   Arithmatic<float> ar(10.2, 3.4);
+   Arithametic<<arr.sub();
+}
+

@@ -1,0 +1,59 @@
+Tree - Tree is a collection of nodes and edges.
+Binary tree
+
+
+if there are n nodes thenn-1 edges.
+number of trees-
+catalon number = 2*nCn/n+1 == t(i-1)*t(n-i)
+where n - numbers od nodes
+for labeled node formula is = (2*nCn/n+1)*n!
+if hight is given - h
+min nodes will be = h+1
+max nodes = 2^(h+1)-1
+
+log2(n+1)-1 <= h <= n-1
+O(logn) to O(n)
+
+in binary tree
+degree(0) = degree(2)+1
+
+Strict binary tree-
+must either 0 or 2 children not 1 child
+pure binary tree
+log2(n+1)-1 <= h <= n-1/2
+
+m - array tree
+in this the capacity of node at most m not more then m
+4-array tree - {0,1,2,3,4}
+
+strict 3-array tree
+either degree 3 or 0
+
+element - i
+left child - 2*i
+right child - 2*i+1
+parent - i/2
+
+Full binary tree--
+number of nodes - (2^h)-1
+
+Tree Traversal--
+1. Pre order
+2. In order
+3. Post order
+4. Level order
+
+Handshaking Lemma and Interesting Tree Properties
+1) In a k-ary tree where every node has either 0 or k children, following property is always true.
+  L = (k - 1)*I + 1
+Where L = Number of leaf nodes
+      I = Number of internal nodes 
+2) In Binary tree, number of leaf nodes is always one more than nodes with two children.
+   L = T + 1
+Where L = Number of leaf nodes
+      T = Number of internal nodes with two children 
+
+// Simple way to intilization
+https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/?ref=rp
+
+

@@ -1,0 +1,53 @@
+Complexity in worse case O(log2(n)) and in avg. case O(log(n))
+Identification - Sorted ouarray is given in the problem 
+condition - Array must in sorted either in asending or desending order.
+If sorted array is given but not sure which sorted then check it using a[i]-a[i+1]
+if array size == 1; it can be any sorted
+Youtube channel - Aditya verma
+upper_bound and Lower_bound works as Binary search in backend of complexity O(log2(n))
+
+Exponantial Search - 
+It is muach better then binary search.
+Useful for unbounded(infinite) array.
+Time complexity - O(log2n)
+Space complexity - if itretive O(1) if recursive O(log2n)
+
+int32_t main()
+{
+	IOS
+	test
+	{
+		input(a)
+		int k;
+		cin >> k;
+
+		if(a[0] == k)
+		cout<<0<<endl;
+		else
+		{
+			int i=1;
+			while(i<n && a[i]<k)
+			{
+				i *= 2;
+			}
+
+			int low = i/2, high = min(i, n-1);
+
+			while(low <= high)
+			{
+				int mid = low + (high-low)/2;
+
+				if(a[mid] == k)
+				{
+					cout<<mid<<endl;
+					break;
+				}
+				if(a[mid] > k)
+				high = mid-1;
+				else
+				low = mid+1;
+			}
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,36 @@
+Heap - dher
+Heap always contains a complete binary tree. 
+eg: 7 nodes or 5 left nodes
+Identification - K is given + Min/Max/top/smallest/lowsest/closest
+
+if K + Min - we have to find Max heap, Min Heap otherwise
+
+Mainly head uses for sorting purpose
+In merge sort it gives complexity of O(NlogN) but in heap it's O(Nlogk)
+eg: in a array fing 3rd smallest value
+Here while using merge sort it sort whole array that is useless but while using head it sort only 0th to kth element
+
+eg2: find smallest all kth values in any order or sorted.
+just return resulent queue
+
+In heap only top element would be max or min accordingly but it is not essantial that inner elements are sorted.
+
+while using max heap it pop all the top elements that is useless
+
+Initilization -
+Max heap- 
+priorty_queue <int> max_heap;
+
+Min heap-
+priorty_queue <int, vector<int>, greater<int>> min_heap;
+
+If we have to take data in pair just remove all the int through pair<int, int>
+or #type def pair<int, pair<int, int>> ppi;
+
+# nearly sorted
+# closest number
+# frequency count
+# frequency sort
+# k closest point to origin
+
+youtube flipkart boy - aditya verma
